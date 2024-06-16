@@ -1,25 +1,23 @@
 #!/bin/sh
 
-[ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
-
-# Prompt
-autoload -Uz vcs_info
-precmd() {
-    vcs_info
-}
-zstyle ':vcs_info:git:*' formats '%b'
-zstyle ':vcs_info:*' enable git
-setopt prompt_subst
-PROMPT='%F{green}%n%f@%F{blue}%m%f:%F{red}%~%f${vcs_info_msg_0_}'
-RPROMPT='%F{yellow}$(git status --short --branch 2>/dev/null)%f'
-
 # History
 HISTFILE=~/.zsh_history
+
+# Zap package manager
+if ! command -v zap >/dev/null 2>&1; then
+    git clone https://github.com/zap-zsh/zap.git "$HOME/.local/share/zap"
+    source "$HOME/.local/share/zap/zap.zsh"
+fi
 
 # Custom sources
 plug "$HOME/.config/zsh/aliases.zsh"
 plug "$HOME/.config/zsh/exports.zsh"
 plug "$HOME/.config/zsh/functions.zsh"
+
+# Install Oh My Posh
+if [ ! -d "$HOME/.oh-my-posh" ]; then
+    git clone https://github.com/ohmyposh/oh-my-posh.git "$HOME/.oh-my-posh"
+fi
 
 # Plugins
 plug "esc/conda-zsh-completion"
