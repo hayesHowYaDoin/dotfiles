@@ -2,6 +2,17 @@
 
 [ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
 
+# Prompt
+autoload -Uz vcs_info
+precmd() {
+    vcs_info
+}
+zstyle ':vcs_info:git:*' formats '%b'
+zstyle ':vcs_info:*' enable git
+setopt prompt_subst
+PROMPT='%F{green}%n%f@%F{blue}%m%f:%F{red}%~%f${vcs_info_msg_0_}'
+RPROMPT='%F{yellow}$(git status --short --branch 2>/dev/null)%f'
+
 # History
 HISTFILE=~/.zsh_history
 
