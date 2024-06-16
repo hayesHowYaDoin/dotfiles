@@ -4,12 +4,11 @@
 HISTFILE=~/.zsh_history
 
 # Znap package manager
-# Download Znap, if it's not there yet.
 [[ -r ~/Repos/znap/znap.zsh ]] ||
     git clone --depth 1 -- \
         https://github.com/marlonrichert/zsh-snap.git ~/Repos/znap
 
-source ~/Repos/znap/znap.zsh  # Start Znap
+source ~/Repos/znap/znap.zsh
 
 # Custom sources
 source "$HOME/.config/zsh/aliases.zsh"
