@@ -1,7 +1,7 @@
 install_dependencies() {
     # Curl
     if [[ ! $(command -v curl) ]]; then
-        apt-get install curl
+        sudo apt-get install -y curl
     fi
 
     # Starship
