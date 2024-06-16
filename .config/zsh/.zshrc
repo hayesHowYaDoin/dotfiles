@@ -4,10 +4,11 @@
 HISTFILE=~/.zsh_history
 
 # Zap package manager
-if ! command -v zap >/dev/null 2>&1; then
-    git clone https://github.com/zap-zsh/zap.git "$HOME/.local/share/zap"
-    source "$HOME/.local/share/zap/zap.zsh"
-fi
+# if ! command -v zap >/dev/null 2>&1; then
+#     curl -sL https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh | zsh
+# fi
+
+[ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
 
 # Custom sources
 plug "$HOME/.config/zsh/aliases.zsh"
@@ -15,8 +16,8 @@ plug "$HOME/.config/zsh/exports.zsh"
 plug "$HOME/.config/zsh/functions.zsh"
 
 # Install Oh My Posh
-if [ ! -d "$HOME/.oh-my-posh" ]; then
-    git clone https://github.com/ohmyposh/oh-my-posh.git "$HOME/.oh-my-posh"
+if ! command -v oh-my-posh >/dev/null 2>&1; then
+    curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin
 fi
 
 # Plugins
@@ -25,11 +26,10 @@ plug "zsh-users/zsh-autosuggestions"
 plug "hlissner/zsh-autopair"
 plug "zap-zsh/supercharge"
 plug "zap-zsh/vim"
-plug "zap-zsh/zap-prompt"
 plug "zap-zsh/fzf"
-plug "zap-zsh/exa"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "zsh-users/zsh-history-substring-search"
+plug "wintermi/zsh-oh-my-posh"
 
 # Keybinds
 bindkey '^ ' autosuggest-accept
@@ -39,3 +39,5 @@ bindkey '^[[B' history-substring-search-down
 
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+
+eval "$(oh-my-posh init zsh --config "~/.config/zsh/theme.omp.json")"
