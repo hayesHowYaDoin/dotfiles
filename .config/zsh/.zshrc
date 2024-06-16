@@ -16,12 +16,10 @@ source "$HOME/.config/zsh/aliases.zsh"
 source "$HOME/.config/zsh/exports.zsh"
 source "$HOME/.config/zsh/functions.zsh"
 
-# Install Oh My Posh
-if [[ ! $(command -v oh-my-posh) ]]; then
-    curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin
-fi
+# Install starship
+install_dependencies
 
-znap eval oh-my-posh "oh-my-posh init zsh --config "~/.config/zsh/theme.omp.json""
+znap eval starship "starship init zsh --print-full-init"
 znap prompt
 
 # Plugins
@@ -33,7 +31,6 @@ znap source zap-zsh/vim
 znap source zap-zsh/fzf
 znap source zsh-users/zsh-syntax-highlighting
 znap source zsh-users/zsh-history-substring-search
-znap source wintermi/zsh-oh-my-posh
 
 # Keybinds
 bindkey '^ ' autosuggest-accept
