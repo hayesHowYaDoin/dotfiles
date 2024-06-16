@@ -3,33 +3,37 @@
 # History
 HISTFILE=~/.zsh_history
 
-# Zap package manager
-# if ! command -v zap >/dev/null 2>&1; then
-#     curl -sL https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh | zsh
-# fi
+# Znap package manager
+# Download Znap, if it's not there yet.
+[[ -r ~/Repos/znap/znap.zsh ]] ||
+    git clone --depth 1 -- \
+        https://github.com/marlonrichert/zsh-snap.git ~/Repos/znap
 
-[ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
+source ~/Repos/znap/znap.zsh  # Start Znap
 
 # Custom sources
-plug "$HOME/.config/zsh/aliases.zsh"
-plug "$HOME/.config/zsh/exports.zsh"
-plug "$HOME/.config/zsh/functions.zsh"
+source "$HOME/.config/zsh/aliases.zsh"
+source "$HOME/.config/zsh/exports.zsh"
+source "$HOME/.config/zsh/functions.zsh"
 
 # Install Oh My Posh
-if ! command -v oh-my-posh >/dev/null 2>&1; then
+if [[ ! $(command -v oh-my-posh) ]]; then
     curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin
 fi
 
+znap eval oh-my-posh "oh-my-posh init zsh --config "~/.config/zsh/theme.omp.json""
+znap prompt
+
 # Plugins
-plug "esc/conda-zsh-completion"
-plug "zsh-users/zsh-autosuggestions"
-plug "hlissner/zsh-autopair"
-plug "zap-zsh/supercharge"
-plug "zap-zsh/vim"
-plug "zap-zsh/fzf"
-plug "zsh-users/zsh-syntax-highlighting"
-plug "zsh-users/zsh-history-substring-search"
-plug "wintermi/zsh-oh-my-posh"
+znap source esc/conda-zsh-completion
+znap source zsh-users/zsh-autosuggestions
+znap source hlissner/zsh-autopair
+znap source zap-zsh/supercharge
+znap source zap-zsh/vim
+znap source zap-zsh/fzf
+znap source zsh-users/zsh-syntax-highlighting
+znap source zsh-users/zsh-history-substring-search
+znap source wintermi/zsh-oh-my-posh
 
 # Keybinds
 bindkey '^ ' autosuggest-accept
@@ -39,5 +43,3 @@ bindkey '^[[B' history-substring-search-down
 
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
-
-eval "$(oh-my-posh init zsh --config "~/.config/zsh/theme.omp.json")"
