@@ -1,4 +1,9 @@
 install_dependencies() {
+    # Curl
+    if [[ ! $(command -v curl) ]]; then
+        apt-get install curl
+    fi
+
     # Starship
     if [[ ! $(command -v starship) ]]; then
         mkdir -p ~/.local/bin
