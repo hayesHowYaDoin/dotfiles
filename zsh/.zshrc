@@ -15,11 +15,10 @@ source "$HOME/.config/zsh/aliases.zsh"
 source "$HOME/.config/zsh/exports.zsh"
 source "$HOME/.config/zsh/functions.zsh"
 
-# Install starship
 install_dependencies
 
-znap eval starship "starship init zsh --print-full-init"
-znap prompt
+znap source ohmyzsh/ohmyzsh lib/{async_prompt,git,theme-and-appearance}
+znap prompt ohmyzsh/ohmyzsh themes/robbyrussell
 
 # Plugins
 znap source esc/conda-zsh-completion
