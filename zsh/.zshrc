@@ -1,5 +1,7 @@
 #!/bin/sh
 
+LC_CTYPE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
 # History
 HISTFILE=~/.zsh_history
 
