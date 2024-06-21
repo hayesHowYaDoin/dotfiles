@@ -18,10 +18,10 @@ source "$HOME/.config/zsh/aliases.zsh"
 source "$HOME/.config/zsh/exports.zsh"
 source "$HOME/.config/zsh/functions.zsh"
 
-install_dependencies
-
+# Theme
+theme="pure"    # pure, pararussel, onehalf.minimal, zash
 znap source wintermi/zsh-oh-my-posh
-znap eval oh-my-posh "oh-my-posh init zsh"
+znap eval oh-my-posh "oh-my-posh init zsh --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/${theme}.omp.json"
 
 # Plugins
 znap source esc/conda-zsh-completion
