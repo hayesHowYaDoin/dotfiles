@@ -20,8 +20,8 @@ source "$HOME/.config/zsh/functions.zsh"
 
 install_dependencies
 
-znap source ohmyzsh/ohmyzsh lib/{async_prompt,git,theme-and-appearance}
-znap prompt ohmyzsh/ohmyzsh themes/robbyrussell
+znap source wintermi/zsh-oh-my-posh
+znap eval oh-my-posh "oh-my-posh init zsh"
 
 # Plugins
 znap source esc/conda-zsh-completion
