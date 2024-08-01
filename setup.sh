@@ -3,9 +3,5 @@
 
 sudo apt-get install stow
 
-# Take current files, then overwrite them
-stow --adopt zsh
-git restore zsh
+stow zsh
 
-# Start to prompt to download dependencies
-zsh
