@@ -7,6 +7,6 @@ if [[ "$EUID" -ne 0 ]]; then
 fi
 
 $SUDO apt-get update
-$SUDO apt-get install stow
+$SUDO apt-get install -y zsh stow
 
 stow zsh
